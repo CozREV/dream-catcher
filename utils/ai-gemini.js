@@ -1,6 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const gemini = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Call Gemini API for dream interpretation
 export async function getDreamInterpretation(dreamText) {
@@ -12,7 +11,7 @@ export async function getDreamInterpretation(dreamText) {
   const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
   
   try {
-    const generativeModel = gemini.getGenerativeModel({
+    const generativeModel = new GoogleGenerativeAI(process.env.GEMINI_API_KEY).getGenerativeModel({
       model: model,
       systemInstruction: 'You are a thoughtful dream interpreter. Be insightful but gentle, and consider common dream symbolism. Keep your interpretation to 2-3 paragraphs.'
     });
